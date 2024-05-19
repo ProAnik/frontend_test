@@ -32,6 +32,10 @@ Please use google chrome browser to open, its tested and developed in google chr
 ###
 
 
+View the documentation in below link.
+https://docs.google.com/document/d/1f0cozwin7tdQ6AriVIMskTcZUVu-HuAsYN5Zx9lXE2E/edit?usp=sharing
+
+
 
 
 
