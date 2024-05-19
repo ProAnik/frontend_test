@@ -69,21 +69,46 @@ div {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: white;
 }
 
 
 
-.squares {
+.squares_red {
     background-color: red;
 }
 
-.circles {
+.circles_red {
+    background-color: red;
+    border-radius: 50%;
+}
+
+.triangles_red {
+    background-image: url('/public/assets/triangle_red.png');
+}
+.squares_green {
+    background-color: green;
+}
+
+.circles_green {
+    background-color: green;
+    border-radius: 50%;
+}
+
+.triangles_green {
+    background-image: url('/public/assets/triangle.png');
+}
+.squares_blue {
+    background-color: blue;
+}
+
+.circles_blue {
     background-color: blue;
     border-radius: 50%;
 }
 
-.triangles {
-    background-image: url('/public/assets/triangle.png');
+.triangles_blue {
+    background-image: url('/public/assets/triangle_blue.png');
 }
 
 #shape-indicator {

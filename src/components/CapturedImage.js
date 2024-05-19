@@ -1,67 +1,76 @@
-import React, { useEffect, useState } from 'react';
-import { useCaptcha } from '../context/CaptchaContext';
-import GameBoard from './GameBoard';
+import React, { useEffect, useState } from "react";
+import { useCaptcha } from "../context/CaptchaContext";
+import GameBoard from "./GameBoard";
 
 const CapturedImage = () => {
-    const { capturedImage, setStep, squarePosition, targetShape } = useCaptcha();
-    const [watermarkedImage, setWatermarkedImage] = useState(null);
-    const [selectedSectors, setSelectedSectors] = useState([]);
+  const {
+    capturedImage,
+    squarePosition,
+    targetShape,
+    cells,
+    setStep,
+    setResult,
+    selectedShape,
+  } = useCaptcha();
+  const [watermarkedImage, setWatermarkedImage] = useState(null);
 
-    useEffect(() => {
-        const addWatermarks = () => {
-            const img = new Image();
-            img.src = capturedImage;
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width;
-                canvas.height = img.height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-                setWatermarkedImage(canvas.toDataURL('image/png'));
-            };
+  useEffect(() => {
+    const addWatermarks = () => {
+      const img = new Image();
+      img.src = capturedImage;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        setWatermarkedImage(canvas.toDataURL("image/png"));
+      };
+    };
+
+    if (capturedImage) {
+      addWatermarks();
+    }
+  }, [capturedImage]);
+
+  const handleValidation = () => {
+    let res = true;
+    cells.map((cell, index) => {
+    
+      if (cell.shape == targetShape) {
+        if(selectedShape[index] != "ok") {
+            res = false
         };
+      }
+    });
+    setResult(res)
+    setStep(3);
+  };
 
-        if (capturedImage) {
-            addWatermarks();
-        }
-    }, [capturedImage]);
+  return (
+    <div>
+      <img
+        src={watermarkedImage}
+        alt="captured"
+        style={{ position: "relative", cursor: "pointer" }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: squarePosition.top,
+          left: squarePosition.left,
+          width: "200px",
+          height: "200px",
+          border: "2px solid red",
+        }}
+      >
+        <GameBoard></GameBoard>
+      </div>
+      <p>Find the {targetShape}</p>
 
-    const handleSectorClick = (e) => {
-        const rect = e.target.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        setSelectedSectors([...selectedSectors, { x, y }]);
-    };
-
-    const handleValidation = () => {
-        setStep(3);
-    };
-
-    return (
-        <div>
-            <img
-                src={watermarkedImage}
-                alt="captured"
-                style={{ position: 'relative', cursor: 'pointer' }}
-                onClick={handleSectorClick}
-            />
-                <div
-                    style={{
-                    position: 'absolute',
-                    top: squarePosition.top,
-                    left: squarePosition.left,
-                    width: '200px',
-                    height: '200px',
-                    border: '2px solid red',
-                }}
-                >
-                    <GameBoard></GameBoard>
-                </div>
-            <p>Find the {targetShape}</p>
-
-            <button onClick={handleValidation}>Validate</button>
-        </div>
-    );
+      <button onClick={handleValidation}>Validate</button>
+    </div>
+  );
 };
 
 export default CapturedImage;

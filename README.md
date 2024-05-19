@@ -16,8 +16,6 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -27,7 +25,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 
 
-Please Use Chrome Browser to open, its tested and developed in chrome browser (Version 125.0.6422.60 (Official Build)) and windows environment only.
+
+                                                                                Important
+###
+Please use google chrome browser to open, its tested and developed in google chrome browser (Version 125.0.6422.60 (Official Build)) and windows environment only.
 ###
 
 

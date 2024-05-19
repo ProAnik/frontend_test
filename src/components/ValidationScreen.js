@@ -2,13 +2,12 @@ import React from 'react';
 import { useCaptcha } from '../context/CaptchaContext';
 
 const ValidationScreen = () => {
-    const { setStep } = useCaptcha();
-
+    const { result } = useCaptcha();
     return (
         <div>
             <h2>Validation Result</h2>
-            <p>Congratulations, you have passed the CAPTCHA test!</p>
-            <button onClick={() => setStep(1)}>Try Again</button>
+            <p> {result ? "Congratulations" : "Sorry"}, you have { result ? "passed" : "failed" } the CAPTCHA test!</p>
+            <button onClick={() => window.location.reload()}>Try Again</button>
         </div>
     );
 };
