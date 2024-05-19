@@ -1,0 +1,92 @@
+/* src/components/styles.css */
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+video {
+    border: 1px solid #ccc;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+select {
+    margin: 10px;
+    padding: 5px;
+}
+
+img {
+    max-width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+label {
+    margin-right: 10px;
+}
+
+div {
+    position: relative;
+}
+
+.square {
+    position: absolute;
+    border: 2px solid red;
+}
+
+
+
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 36px);
+    grid-template-rows: repeat(5, 36px);
+    grid-gap: 4px;
+}
+
+.cell {
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.squares {
+    background-color: red;
+}
+
+.circles {
+    background-color: blue;
+    border-radius: 50%;
+}
+
+.triangles {
+    background-image: url('/public/assets/triangle.png');
+}
+
+#shape-indicator {
+    margin-top: 20px;
+    font-size: 24px;
+}

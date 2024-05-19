@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { CaptchaProvider, useCaptcha } from './context/CaptchaContext';
+import VideoStream from './components/VideoStream';
+import CapturedImage from './components/CapturedImage';
+import ValidationScreen from './components/ValidationScreen';
+import './components/styles.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const { step } = useCaptcha();
 
-export default App;
+    return (
+        <div className="app">
+            {step === 1 && <VideoStream />}
+            {step === 2 && <CapturedImage />}
+            {step === 3 && <ValidationScreen />}
+        </div>
+    );
+};
+
+const AppWrapper = () => (
+    <CaptchaProvider>
+        <App />
+    </CaptchaProvider>
+);
+
+export default AppWrapper;
